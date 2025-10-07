@@ -56,13 +56,16 @@
         
         .content {
             min-height: 100vh;
+            height: 100vh;
             padding: 2rem;
             box-sizing: border-box;
-            margin-top: 100px;
+            margin-top: 70px;
+            display: flex;
+            flex-direction: column;
         }
         
         section:first-of-type {
-            margin-top: 120px;
+            margin-top: 70px;
         }
         
         .gradientBanner {
@@ -206,14 +209,7 @@
             font-weight: bold;
         }
         
-        .title-line {
-            opacity: 0;
-            transform: translateY(-100px);
-            animation: fallSlow 2.5s ease-out forwards;
-            will-change: transform, opacity;
-            text-align: center;
-        }
-        
+
         #line1 {
             animation-delay: 0.4s;
             font-size: 100px;
@@ -231,6 +227,7 @@
             font-size: 200px;
         }
         
+        /* 语言样式 - 保持默认只显示中文 */
         .lang-en {
             display: none;
         }
@@ -343,16 +340,6 @@
         }
         
         /* 8. 动画关键帧 */
-        @keyframes fallSlow {
-            0% {
-                opacity: 0;
-                transform: translateY(-200px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
         
         @keyframes gradientFlow {
             0% { background-position: 0% 100%; }
@@ -518,8 +505,11 @@
             }
             
             .content {
+                height: 100vh;
                 padding: 30px 10px;
-                margin-top: 150px;
+                margin-top: 70px;
+                display: flex;
+                flex-direction: column;
             }
             
             .scroll-arrow-container {
@@ -556,11 +546,14 @@
         /* 11. 响应式设计 - 超小屏幕设备 */
         @media screen and (max-width: 480px) {
             .content {
+                height: 100vh;
                 padding: 1.5rem 1rem;
+                display: flex;
+                flex-direction: column;
             }
             
             section:first-of-type {
-                margin-top: 100px !important;
+                margin-top: 70px !important;
             }
             
             h1 {
@@ -601,7 +594,7 @@
     <nav class="top-nav">
         <div class="logo" >
             <a href="#top" class="logo-link">
-                <img class="logo-img" src="D:\Pictures\设定图\Logo\白色透明无字.png" alt="MyLogo" >
+                <img class="logo-img" src="https://lancee0812.github.io/Profile/logo.png" alt="MyLogo" >
                 <span class="logo-text">LANCEE</span>
             </a>
         </div>
@@ -706,24 +699,18 @@
                     </li>
                 </ul>
             </li>
-            <!-- 语言切换按钮 -->
-            <li class="menu-item language-toggle">
-                <a href="#" id="langToggle" class="menu-link language-button">
-                    <span style="font-size: 24px;">🌎</span>
-                </a>
-            </li>
         </ul>
     </nav>
     <section class="content">
         <div class="gradientBanner"></div>
-        <p class="art-text title-line lang-cn" id="line1" style="text-align: center; font-size: 100px; line-height: 1;">你好</p>
-        <p class="art-text title-line lang-cn" id="line2" style="text-align: center; font-size: 100px; line-height: 1;">我是</p>
-        <p class="art-text title-line lang-cn" id="line3" style="text-align: center; font-size: 200px;">奶昔</p>
-        <p class="art-text title-line lang-en" style="display:none; text-align: center; font-size: 100px; line-height: 1;">Hello</p>
-        <p class="art-text title-line lang-en" style="display:none; text-align: center; font-size: 100px; line-height: 1;">I'm</p>
-        <p class="art-text title-line lang-en" style="display:none; text-align: center; font-size: 200px;">Lancee</p>
-        <p class="art-text lang-cn" style="text-align: center; margin-top: 30px;">欢迎来到我的小窝</p>
-        <p class="art-text lang-en" style="display:none; text-align: center; margin-top: 30px;">Welcome to my space</p>
+        <p class="art-text Welcome lang-cn" id="line1" style="text-align: center; font-size: 100px; line-height: 1;">你好</p>
+        <p class="art-text Welcome lang-cn" id="line2" style="text-align: center; font-size: 100px; line-height: 1;">我是</p>
+        <p class="art-text Welcome lang-cn" id="line3" style="text-align: center; font-size: 200px;">奶昔</p>
+        <p class="art-text Welcome lang-cn" style="text-align: center; margin-top: 30px;">欢迎来到我的小窝</p>
+        <p class="art-text Welcome lang-en" style="display:none; text-align: center; font-size: 100px; line-height: 1;">Hello</p>
+        <p class="art-text Welcome lang-en" style="display:none; text-align: center; font-size: 100px; line-height: 1;">I'm</p>
+        <p class="art-text Welcome lang-en" style="display:none; text-align: center; font-size: 200px;">Lancee</p>
+        <p class="art-text Welcome lang-en" style="display:none; text-align: center; margin-top: 30px;">Welcome to my space</p>
         <!-- 动态三角箭头 -->
         <div id="scrollArrow" class="scroll-arrow-container">
             <div class="scroll-arrow"></div>
@@ -938,43 +925,6 @@
                     }
                 });
             });
-            
-            // 语言切换功能
-            const langToggle = document.getElementById('langToggle');
-            if (langToggle) {
-                let currentLang = 'cn'; // 默认中文
-                
-                langToggle.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    
-                    // 切换语言
-                    currentLang = currentLang === 'cn' ? 'en' : 'cn';
-                    
-                    // 更新按钮文本
-                    document.querySelectorAll('.language-button .lang-cn').forEach(el => {
-                        el.style.display = currentLang === 'cn' ? 'block' : 'none';
-                    });
-                    document.querySelectorAll('.language-button .lang-en').forEach(el => {
-                        el.style.display = currentLang === 'cn' ? 'none' : 'block';
-                    });
-                    
-                    // 更新所有section内容
-                    const sections = document.querySelectorAll('section');
-                    sections.forEach(section => {
-                        // 获取section内的所有语言元素
-                        const cnElements = section.querySelectorAll('.lang-cn');
-                        const enElements = section.querySelectorAll('.lang-en');
-                        
-                        // 显示当前语言，隐藏另一种语言
-                        cnElements.forEach(el => {
-                            el.style.display = currentLang === 'cn' ? '' : 'none';
-                        });
-                        enElements.forEach(el => {
-                            el.style.display = currentLang === 'cn' ? 'none' : '';
-                        });
-                    });
-                });
-            }
         });
         // 汉堡菜单交互
         const menuToggle = document.querySelector('.menu-toggle');
@@ -1136,40 +1086,6 @@
         // 窗口大小改变时更新isMobile状态
         window.addEventListener('resize', function() {
             isMobile = window.innerWidth <= 768;
-        });
-        
-        // 设置语言切换功能
-        const langToggle = document.getElementById('langToggle');
-        let currentLang = 'cn'; // 默认中文
-        
-        langToggle.addEventListener('click', function(e) {
-            e.preventDefault();
-            
-            // 切换语言
-            currentLang = currentLang === 'cn' ? 'en' : 'cn';
-            
-            // 更新按钮文本
-            document.querySelectorAll('.language-button .lang-cn').forEach(el => {
-                el.style.display = currentLang === 'cn' ? 'block' : 'none';
-            });
-            document.querySelectorAll('.language-button .lang-en').forEach(el => {
-                el.style.display = currentLang === 'cn' ? 'none' : 'block';
-            });
-            
-            // 更新所有section内容
-            sections.forEach(section => {
-                // 获取section内的所有语言元素
-                const cnElements = section.querySelectorAll('.lang-cn');
-                const enElements = section.querySelectorAll('.lang-en');
-                
-                // 显示当前语言，隐藏另一种语言
-                cnElements.forEach(el => {
-                    el.style.display = currentLang === 'cn' ? '' : 'none';
-                });
-                enElements.forEach(el => {
-                    el.style.display = currentLang === 'cn' ? 'none' : '';
-                });
-            });
         });
     </script>
 </body>
